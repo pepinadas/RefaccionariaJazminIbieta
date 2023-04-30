@@ -4,6 +4,6 @@ Este repositorio contiene el MVC de la pagina web de la refaccionaria Jazmin Ibi
 
 # Autoría #
 
-Este proyecto ue desarrollado por Angel Agustín Hernandez Soledad:  [pepinadas](https://github.com/pepinadas). 
+Este proyecto fue desarrollado por Angel Agustín Hernandez Soledad:  [pepinadas](https://github.com/pepinadas). 
 Y por Jazmín Sarai Ibieta Olvera: [jazmin08ibieta](https://github.com/jazmin08ibieta).
 En su desarrollo se han utilizado principalmente las siguientes herramientas:
