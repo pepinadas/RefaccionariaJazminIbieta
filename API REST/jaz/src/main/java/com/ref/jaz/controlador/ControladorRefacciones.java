@@ -32,6 +32,6 @@ public class ControladorRefacciones {
     //Delete
     @DeleteMapping("/borrar/producto")
     public ResponseEntity<?> borrarAlgo(@RequestBody(required = true) Refaccion refaccion) {
-        return new ResponseEntity<>(tienda.eliminar(refaccion), HttpStatus.GONE);
+        return new ResponseEntity<>(tienda.eliminar(refaccion.getId()), HttpStatus.GONE);
     }
 }

@@ -34,17 +34,17 @@ public class Tienda {
                 db.set(i, cambio);
             }
         }
-        return cambio;
+        return db.get(clave);
     }
 
-    public Boolean eliminar(Refaccion eliminado) {
-        boolean existe = db.contains(eliminado);
-        if (existe) {
-            db.remove(eliminado);
-            return true;
-        } else {
-            throw new IllegalArgumentException("No existe");
+    public Boolean eliminar(int clave) {
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getId() == clave) {
+                db.remove(clave);
+                return true;
+            }
         }
+        throw new IllegalArgumentException("La categoria no existe");
     }
 
     public Tienda() {
