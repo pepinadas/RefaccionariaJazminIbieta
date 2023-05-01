@@ -12,7 +12,7 @@ public class Tienda {
         if (existe) {
             return posibleMarca;
         } else {
-            throw new IllegalArgumentException("La marca no existe"); //Se puede cambiar, simplemente es para dar a entender que no exite la marca
+            throw new IllegalArgumentException("La marca no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la marca
         }
     }
 
@@ -21,7 +21,7 @@ public class Tienda {
         if (existe) {
             return posibleCategoria;
         } else {
-            throw new IllegalArgumentException("La categoria no existe"); //Se puede cambiar, simplemente es para dar a entender que no exite la marca
+            throw new IllegalArgumentException("La categoria no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la categoria
         }
     }
 
@@ -35,6 +35,16 @@ public class Tienda {
             }
         }
         return cambio;
+    }
+
+    public Boolean eliminar(Refaccion eliminado) {
+        boolean existe = db.contains(eliminado);
+        if (existe) {
+            db.remove(eliminado);
+            return true;
+        } else {
+            throw new IllegalArgumentException("No existe");
+        }
     }
 
     public Tienda() {
