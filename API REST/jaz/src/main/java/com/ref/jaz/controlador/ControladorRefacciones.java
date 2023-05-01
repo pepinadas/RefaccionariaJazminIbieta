@@ -21,8 +21,8 @@ public class ControladorRefacciones {
     //Patch
 
     @PatchMapping("/editar/producto/{id}")
-    public ResponseEntity<?> cambiarProductoByID(@RequestBody(required = true)Refaccion refaccion){
-        return new ResponseEntity<>(tienda.cambiar(refaccion.getId(), refaccion), HttpStatus.OK);
+    public ResponseEntity<?> editarProductoByID(@RequestBody(required = true)Refaccion refaccion){
+        return new ResponseEntity<>(tienda.editar(refaccion.getId(), refaccion), HttpStatus.OK);
     }
 
     //Delete

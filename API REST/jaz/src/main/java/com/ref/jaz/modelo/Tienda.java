@@ -28,7 +28,7 @@ public class Tienda {
 
 
 
-    public Refaccion cambiar(int clave, Refaccion cambio) {
+    public Refaccion editar(int clave, Refaccion cambio) {
         for (int i = 0; i < db.size(); i++) {
             if(db.get(i).getId() == clave){
                 db.set(i, cambio);
