@@ -15,4 +15,24 @@ public class Refaccion {
     private String marca; //Tal vez deberiamos pensar en declarar esto como un List<String> marca, para que sean valores establecidos y super a menos de que la marca fuera previamente creada, no sea valida, para evitar faltas de ortografia
     private double costo;
     private String categoria; //Lo mismo con esto
+
+    private int cantidad;
+
+    public boolean vender(){
+        boolean resultado = false;
+        if(cantidad >= 1) {
+            cantidad--;
+            resultado =  true;
+        }
+              return resultado;
+        }
+
+
+    public boolean devolver(){
+        this.cantidad ++;
+        return true;
+    }
+
+
+
 }
