@@ -64,11 +64,17 @@ public class Tienda {
 
     public boolean regresar (int id) {
         Refaccion refaccion =null;
-            if(refaccion == null){
-                return false;
-            }else{
-                return refaccion.devolver();
+        for (int i = 0; i < db.size(); i++) {
+            if(db.get(i).getId() == id){
+                refaccion = db.get(i);
+                break;
             }
+        }
+        if (refaccion != null){
+            return refaccion.devolver();
+        }else{
+            return false;
+        }
     }
 
     //Patch para editar un producto ya existente
@@ -106,10 +112,10 @@ public class Tienda {
         categoria.add("Llantas");
 
         db = new ArrayList<>();
-        db.add(new Refaccion(db.size(),  "https://www.hangarperformance.com/wp-content/uploads/2020/08/Faros-LED-7p-SIN-ojo-angel.jpg", "Faros Led Lupa Redondo 7pulg", "Bonitos Faros Led con lupa diseñados para un amplio alcance de vision, compatibles con cualquier entrada de 7 pulgadas como un Jeep", existeMarca("BMW"), 2400.00, existeCategoria("Faros"), 40));
-        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/512r3gH059L._AC_SY450_.jpg", "Bujia", "Bujia para carros BMW", existeMarca("BMW"), 100.00, existeCategoria("Bateria"), 100));
-        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/51Mqp+oaeWL._AC_.jpg", "Faros ", "Faro Izquierdo/Piloto DEPO", existeMarca("Ford"), 654.00, existeCategoria("Faros"), 20));
-        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/41+5tG6LuML._AC_SX450_.jpg", "Bateria", "LTH BATERIA AGM L-47-660AGM", existeMarca("Nissan"), 2400.00, existeCategoria("Bateria"), 60));
-        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/81uRTxv1GxL.__AC_SX300_SY300_QL70_ML2_.jpg", "Faros", "Conjunto de faros delanteros de cobalto, reflector de repuesto", existeMarca("BMW"), 2600.00, existeCategoria("Faros"), 10));
+        db.add(new Refaccion(db.size(),  "https://www.hangarperformance.com/wp-content/uploads/2020/08/Faros-LED-7p-SIN-ojo-angel.jpg", "Faros Led Lupa Redondo 7pulg", "Bonitos Faros Led con lupa diseñados para un amplio alcance de vision, compatibles con cualquier entrada de 7 pulgadas como un Jeep", existeMarca("BMW"), 2400.00, existeCategoria("Faros"), 50));
+        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/512r3gH059L._AC_SY450_.jpg", "Bujia", "Bujia para carros BMW", existeMarca("BMW"), 100.00, existeCategoria("Bateria"), 50));
+        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/51Mqp+oaeWL._AC_.jpg", "Faros ", "Faro Izquierdo/Piloto DEPO", existeMarca("Ford"), 654.00, existeCategoria("Faros"), 50));
+        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/41+5tG6LuML._AC_SX450_.jpg", "Bateria", "LTH BATERIA AGM L-47-660AGM", existeMarca("Nissan"), 2400.00, existeCategoria("Bateria"), 50));
+        db.add(new Refaccion(db.size(),  "https://m.media-amazon.com/images/I/81uRTxv1GxL.__AC_SX300_SY300_QL70_ML2_.jpg", "Faros", "Conjunto de faros delanteros de cobalto, reflector de repuesto", existeMarca("BMW"), 2600.00, existeCategoria("Faros"), 50));
     }
 }

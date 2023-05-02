@@ -16,7 +16,7 @@ public class Refaccion {
     private double costo;
     private String categoria; //Lo mismo con esto
     private int cantidad;
-
+//post vender
     public boolean vender(){
         boolean resultado = false;
         if(cantidad >= 1) {
@@ -26,10 +26,14 @@ public class Refaccion {
               return resultado;
         }
 
-
+//post regresar
     public boolean devolver(){
-        this.cantidad ++;
-        return true;
+        boolean resultado = false;
+        if (cantidad < 50){
+            cantidad++;
+            resultado=true;
+        }
+        return resultado;
     }
 
 
