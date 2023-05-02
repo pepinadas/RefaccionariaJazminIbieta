@@ -12,23 +12,6 @@ public class Tienda {
 
     int ventas = 0;
 
-    public String existeMarca(String posibleMarca) {
-        boolean existe = marca.contains(posibleMarca);
-        if (existe) {
-            return posibleMarca;
-        } else {
-            throw new IllegalArgumentException("La marca no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la marca
-        }
-    }
-
-    public String existeCategoria(String posibleCategoria) {
-        boolean existe = categoria.contains(posibleCategoria);
-        if (existe) {
-            return posibleCategoria;
-        } else {
-            throw new IllegalArgumentException("La categoria no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la categoria
-        }
-    }
     //Get mostrando el articulo por ID
     public Refaccion id(int id) {
         return db.get(id);
@@ -42,6 +25,23 @@ public class Tienda {
         return db;
     }
 
+    //Funciones utiles para verificar si existe o no la categoria o la marca
+    public String existeMarca(String posibleMarca) {
+        boolean existe = marca.contains(posibleMarca);
+        if (existe) {
+            return posibleMarca;
+        } else {
+            throw new IllegalArgumentException("La marca no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la marca
+        }
+    }
+    public String existeCategoria(String posibleCategoria) {
+        boolean existe = categoria.contains(posibleCategoria);
+        if (existe) {
+            return posibleCategoria;
+        } else {
+            throw new IllegalArgumentException("La categoria no existe"); //Se puede cambiar esta linea de codigo, simplemente es para dar a entender que no exite la categoria
+        }
+    }
 
    //Post y funcion comprar
 

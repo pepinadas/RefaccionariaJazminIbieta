@@ -21,7 +21,7 @@ public class ControladorRefacciones {
     }
 
     //Muestra todo el contenido
-    @GetMapping("/refaccion/api/")
+    @GetMapping("/refaccion/api")
     ResponseEntity<ArrayList<Refaccion>> getRefaccion(){
         return new ResponseEntity<>(tienda.getDb(), HttpStatus.OK);
     }
