@@ -77,6 +77,12 @@ public class Tienda {
         }
     }
 
+    //Post agregar Refaccion
+    public Refaccion agregar(Refaccion agregada) {
+        db.add(agregada);
+        return agregada;
+    }
+
     //Patch para editar un producto ya existente
     public Refaccion editar(int clave, Refaccion cambio) {
         for (int i = 0; i < db.size(); i++) {

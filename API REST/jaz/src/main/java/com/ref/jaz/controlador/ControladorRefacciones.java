@@ -39,6 +39,11 @@ public class ControladorRefacciones {
         return new ResponseEntity<>(tienda.regresar(refa1.getId()),HttpStatus.OK);
     }
 
+    @PostMapping("/Agregar")
+    public ResponseEntity<?> agregarProducto(@RequestBody(required = true) Refaccion refa) {
+        return new ResponseEntity<>(tienda.agregar(refa), HttpStatus.CREATED);
+    }
+
     //Patch
     //Editar un producto ya existente
     @PatchMapping("/editar/producto")
