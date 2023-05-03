@@ -1,0 +1,24 @@
+/* Variables */
+:root {
+    --verde-claro: #565C45;
+    --verde: #2F392D;
+    --claro: #DDD6D2;
+    --verde-oscuro: #1B2626;
+    --verde-deslavado: #4A4B42;
+}
+/* Etiquetas basicas Css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    font-family: 'DM Sans', sans-serif;
+    scroll-behavior: smooth;
+
+}
+/* Header */
+.light-colors {
+    color: var(--claro);
+}
