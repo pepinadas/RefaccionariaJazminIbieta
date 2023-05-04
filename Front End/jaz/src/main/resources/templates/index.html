@@ -16,8 +16,6 @@
         --verde-oscuro: #1B2626;
         --verde-deslavado: #4A4B42;
     }
-/* Etiquetas basicas Css */
-
 /* Header */
     .light-colors {
         background-color: var(--claro);
@@ -42,17 +40,68 @@
         display: flex;
         flex-direction: column;
     }
+/* Main */
+    img {
+        max-width: 254px;
+        max-height: 254px;
+    }
+    a {
+        color: var(--verde-oscuro);
+        text-decoration: none;
+    }
+    a:hover {
+        color: var(--claro);
+    }
+    .btnHeader {
+        padding: 7px 20px;
+    }
+    .btnHeader:hover {
+        color: var(--claro);
+        background-color: var(--verde-deslavado);
+    }
+    .backgroundImg {
+        width: 400px;
+        height: 300px;
+        margin: 20px auto;
+        margin-top: 40px;
+        background-image: url('https://www.tienda-urrea.com/wp-content/uploads/2021/07/TH12.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
     .main-first-part {
         display: flex;
         justify-content: space-evenly;
     }
-
+    .mainRefaccionariaTextContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .titulos {
+        font-size: 4rem;
+        color: var(--verde);
+    }
+    .textos {
+        color: var(--verde-oscuro);
+        font-size: 1rem;
+    }
+    #textoPrincipal {
+        font-size: 1.3rem;
+    }
+    .contenedoresImagenes {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .barra {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    margin: 30px 0;
     width: 100%;
     height: 237px;
     background-color: var(--verde-oscuro);
@@ -60,12 +109,36 @@
     }
     .barra h2 {
         color: var(--claro);
-        font-size: 4rem;
+        font-size: 3rem;
     }
     .barra p {
         color: var(--claro);
-        margin-bottom: 30px;
         font-size: 1.8rem;
+    }
+
+    .centraditosTextos {
+        padding: 3rem;
+        text-align: center;
+    }
+/* footer */
+    .ultimaParte {
+        display: flex;
+    }
+    .contacto {
+        padding: 0px 15rem;
+    }
+    .contacto1 {
+        align-self: flex-start;
+    }
+    .contacto2 {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .ultimo-boton {
+        margin: 10px 0;
     }
 </style>
 <body>
@@ -103,16 +176,16 @@
             <div class="backgroundImg"></div>
             <div class="mainRefaccionariaTextContainer">
                 <h2 class="titulos">Refaccionaria Jazmin Ibieta</h2>
-                <p>Somos confianza, compromiso y eficacia</p>
+                <p id="textoPrincipal" class="textos" >Somos confianza, compromiso y eficacia</p>
             </div>
             <!-- --------------------------------------------- Aquí se agregaran las cards --------------------------------------------- -->
             <div class="main-first-part">
-                <div th:each="refaccion : ${refaccion}" class="card" style="width:400px">
-                    <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
-                    <div class="card-body">
+                <div th:each="refaccion : ${refaccion}" class="card contenedoresImagenes" style="width:400px">
+                    <div class="card-body contenedoresImagenes">
+                      <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
                       <h4 th:text="${refaccion.modelo}" class="card-title"></h4>
                       <p th:text="${refaccion.descripcion}" class="card-text"></p>
-                      <a href="#" class="btn btn-primary">See Profile</a>
+                      <a href="#" class="btn btn-primary boton">See Profile</a>
                     </div>
                 </div>
             </div>
@@ -120,55 +193,64 @@
         <section class="barra">
             <h2>¿Lo necesitas urgentemente?</h2>
             <p>Por una pequeña comisión podemos entregarte en menos de 24 horas</p>
-            <div>a</div>
-            <button class="btnHeader btnColorInvertido"><a href="#footerContact" class="btnAReference">Contactanos</a></button>
+            <button class="btnHeader btnColorInvertido"><a href="#contacto" class="btnAReference">Contactanos</a></button>
         </section>
         <section id="productosNuevos">
-            <h2>Productos Nuevos</h2>
+            <h2 class="centraditosTextos titulos">Productos Nuevos</h2>
             <!-- Cambiar prod por la clase que se va a utilizar para las refacciones -->
             <div class="main-first-part">
-                <div th:each="refaccion : ${refaccion}" class="card" style="width:400px">
-                    <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
-                    <div class="card-body">
-                        <h4 th:text="${refaccion.modelo}" class="card-title"></h4>
-                        <p th:text="${refaccion.descripcion}" class="card-text"></p>
-                        <a href="#" class="btn btn-primary">See Profile</a>
+                <div th:each="refaccion : ${refaccion}" class="card contenedoresImagenes" style="width:400px">
+                    <div class="card-body contenedoresImagenes">
+                      <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
+                      <h4 th:text="${refaccion.modelo}" class="card-title"></h4>
+                      <p th:text="${refaccion.descripcion}" class="card-text"></p>
+                      <a href="#" class="btn btn-primary boton">See Profile</a>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h2>Galería</h2>
+        <section class="galeria">
+            <h2 class="centraditosTextos titulos">Galería</h2>
 
             <div class="main-first-part">
-                <div th:each="refaccion : ${refaccion}" class="card main-first-part" style="width:400px">
+                <div th:each="refaccion : ${refaccion}" class="card main-first-part contenedoresImagenes" style="width:400px">
                     <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
                 </div>
             </div>
         </section>
-        <section>
-            <h2>Promociones</h2>
+        <section class="barra">
+            <h2>¿No estas convencido?</h2>
+            <p>Ponte en contacto, muy probablemente tengamos una oferta para ti</p>
+            <button class="btnHeader btnColorInvertido"><a href="#contacto" class="btnAReference">Contactanos</a></button>
         </section>
-        <section>
-            <h2>Contacto</h2>
-            <div>
-                <p>Pongase en contacto con nosotros para obtener más información acerca de nuestros productos, llene el formulario y nosotros con gusto le responderemos</p>
-                <img src="https://www.tienda-urrea.com/wp-content/uploads/2021/07/TH12.jpg" alt="tuerca">
-            </div>
-            <div>
-                <p>Nombre *</p>
-                <input type="text">
-                <p>Empresa *</p>
-                <input type="text">
-                <p>Email *</p>
-                <input type="text">
-                <p>Telefono</p>
-                <input type="text">
-                <p>Mensaje</p>
-                <input type="text">
-                <button class="btn btn-primary boton" type="button">Enviar</button>
-            </div>
+        <section class="promociones">
+            <h2 class="centraditosTextos titulos">Promociones</h2>
         </section>
+        <section class="contacto" id="contacto">
+            <h2 class="centraditosTextos titulos">Contacto</h2>
+            <div class="ultimaParte">
+                <div class="centraditosTextos contacto contacto1">
+                    <p>Pongase en contacto con nosotros para obtener más información acerca de nuestros productos, llene el formulario y nosotros con gusto le responderemos</p>
+                    <img src="https://www.tienda-urrea.com/wp-content/uploads/2021/07/TH12.jpg" alt="tuerca">
+                </div>
+                <div class="contacto contacto2">
+                    <div>
+                        <p>Nombre *</p>
+                        <input type="text">
+                        <p>Empresa *</p>
+                        <input type="text">
+                        <p>Email *</p>
+                        <input type="text">
+                        <p>Telefono</p>
+                        <input type="text">
+                        <p>Mensaje</p>
+                        <input type="text">
+                    </div>
+                    <button class="btn btn-primary boton ultimo-boton" type="button">Enviar</button>
+                </div>
+            </section>
+            </div>
+            
     </main>
 </body>
 </html>
