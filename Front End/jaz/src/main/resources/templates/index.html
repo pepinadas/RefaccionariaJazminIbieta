@@ -109,7 +109,7 @@
                       <p th:text="${refaccion.descripcion}" class="card-text"></p>
                       <a href="#" class="btn btn-primary">See Profile</a>
                     </div>
-                  </div>
+                </div>
             </div>
         </section>
         <section class="barra">
@@ -121,18 +121,24 @@
         <section>
             <h2>Productos Nuevos</h2>
             <!-- Cambiar prod por la clase que se va a utilizar para las refacciones -->
-            <div th:each="prod : ${prods}" class="card" style="width:400px">
-                <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">John Doe</h4>
-                  <p class="card-text">Some example text.</p>
+            <div class="main-first-part">
+                <div th:each="refaccion : ${refaccion}" class="card" style="width:400px">
+                    <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
+                    <div class="card-body">
+                        <h4 th:text="${refaccion.modelo}" class="card-title"></h4>
+                        <p th:text="${refaccion.descripcion}" class="card-text"></p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
                 </div>
             </div>
         </section>
         <section>
             <h2>Galería</h2>
-            <div th:each="prod : ${prods}" class="card" style="width:400px">
-                <img src="" alt="Imagen de los componentes">
+
+            <div class="main-first-part">
+                <div th:each="refaccion : ${refaccion}" class="card main-first-part" style="width:400px">
+                    <img class="card-img-top" th:src="${refaccion.imagen}" alt="Card image">
+                </div>
             </div>
         </section>
         <section>

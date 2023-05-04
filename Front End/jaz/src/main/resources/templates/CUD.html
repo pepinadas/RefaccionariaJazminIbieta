@@ -40,28 +40,31 @@
     </header>
     <main>
         <section>
-            <p>id</p>
-            <input type="text">
-            <p>imagen</p>
-            <input type="text">
-            <p>modelo</p>
-            <input type="text">
-            <p>descripcion</p>
-            <input type="text">
-            <p>marca</p>
-            <input type="text">
-            <p>costo</p>
-            <input type="number">
-            <p>categoria</p>
-            <input type="text">
-            <p>cantidad</p>
-            <input type="number">
-            <div>
-                <button>Crear nuevo</button>
-                <button>Editar existente</button>
-                <button>Borrar existente</button>
-            </div>   
+            <form action="/edicion/" method="POST">
+                <label for="clave">id</label>
+                <input type="text" name="id" id="id">
+                <label for="titulo">imagen</label>
+                <input type="text" name="imagen" id="imagen">
+                <label for="genero">modelo</label>
+                <input type="text" name="modelo" id="modelo">
+                <label for="cantidad">descripcion</label>
+                <input type="text" name="descripcion" id="descripcion">
+                <label for="columna">marca</label>
+                <input type="text" name="marca" id="marca">
+                <label for="fila">costo</label>
+                <input type="text" name="costo" id="costo">
+                <label for="fila">categoria</label>
+                <input type="text" name="categoria" id="categoria">
+                <label for="fila">cantidad</label>
+                <input type="text" name="cantidad" id="cantidad">
+                <input type="submit" value="Agregar">
+                <input type="submit" value="Editar">
+                <input type="submit" value="Borrar">
+            </form>
         </section>
+
+        
+
     </main>
 </body>
 </html>
