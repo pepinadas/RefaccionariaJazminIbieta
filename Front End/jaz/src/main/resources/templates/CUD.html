@@ -70,6 +70,23 @@
         margin-bottom: 30px;
         font-size: 1.8rem;
     }
+    /* Formulario */
+    .simplemente-editar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .simplemente-editar label {
+        font-size: 3rem;
+    }
+    .normal {
+        padding: 10px 300px;
+    }
+    #agregar {
+        margin: 20px;
+        padding: 7px 30px;
+    }
 </style>
 <body>
     <header>
@@ -103,25 +120,25 @@
     </header>
     <main>
         <section>
-            <form action="/edicion/" method="POST">
+            <form class="simplemente-editar" action="/edicion/" method="POST">
                 <label for="id">id</label>
-                <input type="text" name="id" id="id">
+                <input type="text" name="id" id="id" class="normal">
                 <label for="imagen">imagen</label>
-                <input type="text" name="imagen" id="imagen">
+                <input type="text" name="imagen" id="imagen" class="normal">
                 <label for="modelo">modelo</label>
-                <input type="text" name="modelo" id="modelo">
+                <input type="text" name="modelo" id="modelo" class="normal">
                 <label for="descripcion">descripcion</label>
-                <input type="text" name="descripcion" id="descripcion">
+                <input type="text" name="descripcion" id="descripcion" class="normal">
                 <label for="marca">marca</label>
-                <input type="text" name="marca" id="marca">
+                <input type="text" name="marca" id="marca" class="normal">
                 <label for="costo">costo</label>
-                <input type="text" name="costo" id="costo">
+                <input type="text" name="costo" id="costo" class="normal">
                 <label for="categoria">categoria</label>
-                <input type="text" name="categoria" id="categoria">
+                <input type="text" name="categoria" id="categoria" class="normal">
                 <label for="cantidad">cantidad</label>
-                <input type="text" name="cantidad" id="cantidad">
-                <label for="metodo">Coloca agregar, editar o borrar dependiendo que quieras</label>
-                <input type="text" name="metodo" id="metodo">
+                <input type="text" name="cantidad" id="cantidad" class="normal">
+                <label for="metodo">Coloca agregar, editar o borrar dependiendo que quieras (por defecto agregar)</label>
+                <input type="text" name="metodo" id="metodo" class="normal">
                 <input type="submit" value="confirmar" id="agregar">
             </form>
         </section>

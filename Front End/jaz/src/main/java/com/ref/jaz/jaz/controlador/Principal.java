@@ -106,6 +106,14 @@ public class Principal {
                     .retrieve()
                     .bodyToMono(Void.class)
                     .block();
+        } else {
+            Mono<String> resultMono = webClient.post()
+                    .uri(url)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(refaccion)
+                    .retrieve()
+                    .bodyToMono(String.class);
+            result = resultMono.block();
         }
 
 
