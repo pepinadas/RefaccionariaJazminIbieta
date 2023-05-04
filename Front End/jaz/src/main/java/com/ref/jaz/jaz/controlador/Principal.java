@@ -4,9 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ref.jaz.jaz.modelo.Refaccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -50,11 +54,67 @@ public class Principal {
         return "index";
     }
 
-    //@GetMapping("/editar")
-    //public String getAll(//Model model) throws JsonProcessingException {
-    //    String url = "http://127.0.0.1:8081/editar/producto";
-    // String url1 = "http://127.0.0.1:8081/borrar/producto";
-    //  String url2 = "http://127.0.0.1:8081/agregar";
+
+    @GetMapping("/editar")
+    public String agregar(Model model) throws JsonProcessingException {
+        return "CUD";
+    }
+
+
+    @PostMapping(value = "/edicion/")
+    public String cambiar(
+            @ModelAttribute("id") int id,
+            @ModelAttribute("imagen") String imagen,
+            @ModelAttribute("modelo") String modelo,
+            @ModelAttribute("descripcion") String descripcion,
+            @ModelAttribute("marca") String marca,
+            @ModelAttribute("costo") double costo,
+            @ModelAttribute("categoria") String categoria,
+            @ModelAttribute("cantidad") int cantidad,
+            @ModelAttribute("metodo") String metodo,
+            Model model
+    ){
+
+        Refaccion refaccion = new Refaccion(id, imagen,modelo,descripcion,marca,costo,categoria,cantidad);
+        System.out.println("cambiar " + refaccion);
+        String url = "http://127.0.0.1:8081/agregar";
+        String url1 = "http://127.0.0.1:8081/editar/producto";
+        String url2 = "http://127.0.0.1:8081/borrar/producto/" + id;
+
+        String result = "";
+
+        if (metodo.equals("agregar")) {
+            Mono<String> resultMono = webClient.post()
+                    .uri(url)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(refaccion)
+                    .retrieve()
+                    .bodyToMono(String.class);
+            result = resultMono.block();
+        } else if (metodo.equals("editar")) {
+            Mono<String> resultMono = webClient.patch()
+                    .uri(url1)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(refaccion)
+                    .retrieve()
+                    .bodyToMono(String.class);
+            result = resultMono.block();
+        } else if (metodo.equals("borrar")) {
+            webClient
+                    .delete()
+                    .uri(url2)
+                    .retrieve()
+                    .bodyToMono(Void.class)
+                    .block();
+        }
+
+
+        model.addAttribute("refaccion", result);
+
+        return "CUD";
+
+
+    }
 
 
 }

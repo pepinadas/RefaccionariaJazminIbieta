@@ -39,7 +39,7 @@ public class ControladorRefacciones {
         return new ResponseEntity<>(tienda.regresar(refa1.getId()),HttpStatus.OK);
     }
 
-    @PostMapping("/Agregar")
+    @PostMapping("/agregar")
     public ResponseEntity<?> agregarProducto(@RequestBody(required = true) Refaccion refa) {
         return new ResponseEntity<>(tienda.agregar(refa), HttpStatus.CREATED);
     }
@@ -57,8 +57,8 @@ public class ControladorRefacciones {
 
     //Delete
     //Borrar un producto
-    @DeleteMapping("/borrar/producto")
-    public ResponseEntity<?> borrarAlgo(@RequestBody(required = true) Refaccion refaccion) {
-        return new ResponseEntity<>(tienda.eliminar(refaccion.getId()), HttpStatus.GONE);
+    @DeleteMapping("/borrar/producto/{id}")
+    public ResponseEntity<?> borrarAlgo(@PathVariable(required = true, name = "id") int id) {
+        return new ResponseEntity<>(tienda.eliminar(id), HttpStatus.OK);
     }
 }
