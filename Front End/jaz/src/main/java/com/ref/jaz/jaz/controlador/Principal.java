@@ -1,7 +1,7 @@
 package com.ref.jaz.jaz.controlador;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import modelo.Refaccion;
+import com.ref.jaz.jaz.modelo.Refaccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Controller;
@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -35,12 +36,14 @@ public class Principal {
                 });
         List<Refaccion> result = refaccionFlux.collectList().block();
 
-        Flux<Refaccion> refaccionFlux1 = webClient.get()//si no sirve cambia Flux por Mono
+        Mono<Refaccion> refaccionMono = webClient.get()
                 .uri(url1)
                 .retrieve()
-                .bodyToFlux(new ParameterizedTypeReference<Refaccion>() {
-                });
-        List<Refaccion> result1 = refaccionFlux1.collectList().block();
+                .bodyToMono(Refaccion.class);
+
+        // Bloquea y espera la respuesta
+        Refaccion result1 = refaccionMono.block();
+
 
         model.addAttribute("refaccion", result);
         model.addAttribute("refaccion1", result1);

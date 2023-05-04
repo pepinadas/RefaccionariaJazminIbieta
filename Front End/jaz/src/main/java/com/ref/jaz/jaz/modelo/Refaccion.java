@@ -1,4 +1,4 @@
-package modelo;
+package com.ref.jaz.jaz.modelo;
 
 import lombok.*;
 
