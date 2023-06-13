@@ -60,6 +60,11 @@ public class Principal {
         return "CUD";
     }
 
+    @GetMapping("/catalogo")
+    public String catalogo(Model model) throws JsonProcessingException {
+        return "catalogo";
+    }
+
 
     @PostMapping(value = "/edicion/")
     public String cambiar(

@@ -85,76 +85,62 @@
     </nav>
     <!-- /Header -->
 
-    <!-- Main -->
-    <main id="main" class="mt-5 mt-lg-0">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col text-center mt-5" style="height: 300px;">
-                    <img src="https://www.tienda-urrea.com/wp-content/uploads/2021/07/TH12.jpg" alt="Tuerca" style="height: 100%; z-index: -1;">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col text-uppercase text-center">
-                    <h2>Refaccionaria Jazmin Ibieta</h2>
-                    <small>Somos confianza, compromiso y eficacia</small>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- /Main -->
-
-    <!-- About us -->    
-    <section id="about-us" class="mt-5 fondo-gradial" style="background-color: #343a40;">
+    <!-- Sidebar -->    
+    <section id="sidebar" class="" style="margin-top: 5rem;">
         <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-6 p-0">
-                    <img src="https://elexito.com/wp-content/uploads/2017/09/2AdobeStock_101884982-1080x675.jpg" alt="Negocio familiar" width="100%">
-                </div>
-                <div class="col-12 col-lg-6 p-4">
-                    <h2>Somos un negocio familiar</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium iure, tempore at autem ullam sequi temporibus soluta similique placeat odit a obcaecati sunt numquam voluptatum quis incidunt quasi, minima velit maxime nesciunt saepe voluptatibus, optio exercitationem alias. Possimus vero similique, architecto hic repudiandae deserunt quaerat, aspernatur dolore veniam assumenda quibusdam corrupti unde officia deleniti earum, ipsam voluptate ut? Deleniti, repudiandae.</p>
-                    <a th:href="@{/catalogo}" class="btn btn-outline-light">Catalogo 2023</a>
-                </div>
-            </div>
-        </div>
-
-    </section>
-    <!-- /About us -->        
-
-    <!-- Hot sale -->
-    <section id="hot-sale" class="pt-5" style="background-color: #E5E5E5;">
-        <div class="container">
             <div class="row">
-                <div class="col text-uppercase text-center">
-                    <small>Conoce nuestros productos</small>
-                    <h2>Mas vendidos</h2>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div th:each="refaccion : ${refaccion}" class="col-md-6 col-lg-4 col-xxl-3  mb-4 ">
-                    <div class="card justify-content-center" style="height: 100%;">
-                        <div class="row">
-                            <a href="#" class="text-center">
-                                <img th:src="${refaccion.imagen}" class="card-img-top" alt="Foto de refaccion" style="max-height: 414px !important; width: auto; max-width: 100%;">
-                            </a>
-                            <div class="card-body">
-                                <div class="badges offset-8 offset-md-7 offset-lg-6 offset-xl-7 offset-xxl-7">
-                                    <span th:text="${refaccion.marca}" class="badge text-bg-warning"></span>
-                                    <span th:text="${refaccion.categoria}" class="badge text-bg-info"></span>
-                                </div>
-                                <h5 th:text="${refaccion.modelo}" class="card-title pt-3 ps-2"></h5>
-                                <p th:text="${refaccion.descripcion}" class="card-text pb-5 ps-2"></p>
-                            </div>
+                <div class="col-2 text-center"  style="background-color: white;">
+                    <div class="row mt-5 text-center">
+                        <div class="col">
+                            <p><b>Lo más nuevo</b></p>
+                            <a type="button" class="btn mb-2">Ultimos 5 productos</a>
+                            <a type="button" class="btn">Ultimos 10 productos</a>
+                            <a type="button" class="btn">Ultimos 15 productos</a>
                         </div>
                     </div>
                 </div>
+                <div class="col">
+                        <!-- Hot sale -->
+                        <section id="hot-sale" class="pt-5" style="background-color: #E5E5E5;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-uppercase text-center">
+                                        <small>Conoce nuestros productos</small>
+                                        <h2>Mas vendidos</h2>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div th:each="refaccion : ${refaccion}" class="col-md-6 col-lg-4 col-xxl-3  mb-4 ">
+                                        <div class="card justify-content-center" style="height: 100%;">
+                                            <div class="row">
+                                                <a href="#" class="text-center">
+                                                    <img th:src="${refaccion.imagen}" class="card-img-top" alt="Foto de refaccion" style="max-height: 414px !important; width: auto; max-width: 100%;">
+                                                </a>
+                                                <div class="card-body">
+                                                    <div class="badges offset-8 offset-md-7 offset-lg-6 offset-xl-7 offset-xxl-7">
+                                                        <span th:text="${refaccion.marca}" class="badge text-bg-warning"></span>
+                                                        <span th:text="${refaccion.categoria}" class="badge text-bg-info"></span>
+                                                    </div>
+                                                    <h5 th:text="${refaccion.modelo}" class="card-title pt-3 ps-2"></h5>
+                                                    <p th:text="${refaccion.descripcion}" class="card-text pb-5 ps-2"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                
+                                    
 
+                                </div>
+                            </div>
+                        </section>
+                        <!-- /Hot sale -->                    
+                </div>
             </div>
         </div>
+        
     </section>
-    <!-- /Hot sale -->
+    <!-- /Sidebar -->  
+    
 
     <!-- footer -->
     <footer id="footer" class="pb-4 pt-4">
@@ -220,7 +206,9 @@
         </div>
       </div>
 
-    <!-- /Modal -->   
+    <!-- /Modal -->  
+
+
 
 </body>
 </html>
