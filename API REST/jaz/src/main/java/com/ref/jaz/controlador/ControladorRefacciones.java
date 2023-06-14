@@ -2,63 +2,62 @@ package com.ref.jaz.controlador;
 
 import com.ref.jaz.modelo.Refaccion;
 import com.ref.jaz.modelo.Tienda;
+import com.ref.jaz.persistencia.RefaccionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/refaccion")
 public class ControladorRefacciones {
-    Tienda tienda = new Tienda();
 
-    //Get
+    @Autowired
+    private RefaccionRepository refaccionRepo;
 
-    //Muestra una refaccion por su id
-    @GetMapping("/refaccion/api/{id}")
-    ResponseEntity<Refaccion> id(@PathVariable(required = true, name = "id") int id){
-        return new ResponseEntity<>(tienda.id(id), HttpStatus.OK);
+    //Muestra la refaccion por su ID
+    //Ej. http://localhost:8081/api/refaccion/2
+    @GetMapping("/{id}")
+    public Optional<Refaccion> getRefa(@PathVariable int id){
+        return refaccionRepo.findById(id);
     }
 
-    //Muestra todo el contenido
-    @GetMapping("/refaccion/api")
-    ResponseEntity<ArrayList<Refaccion>> getRefaccion(){
-        return new ResponseEntity<>(tienda.getDb(), HttpStatus.OK);
+    //Muetra todas las refacciones
+    //Ej. http://localhost:8081/api/refaccion
+    @GetMapping
+    public List<Refaccion> getRefa(){
+        return (List<Refaccion>) refaccionRepo.findAll();
     }
 
-
-    //Post
-    //Vender
-    @PostMapping("/vender")
-    public ResponseEntity<Boolean> vender(@RequestBody(required = true)Refaccion refa1){
-        return new ResponseEntity<>(tienda.comprar(refa1.getId()),HttpStatus.OK);
+    //Cambia una refacción ya existente
+    //http://localhost:8081/api/refaccion ponga esto en postman y modifique una refaccion
+    @PatchMapping
+    public Refaccion saveAuto(@RequestBody Refaccion larefa){
+        return refaccionRepo.save(larefa);
     }
 
-    @PostMapping("/devolver")
-    public ResponseEntity<Boolean> devolver(@RequestBody(required = true)Refaccion refa1){
-        return new ResponseEntity<>(tienda.regresar(refa1.getId()),HttpStatus.OK);
+    //Agrega una nueva refaccion
+    //Ponga esto en postman y agregue una nueva http://localhost:8081/api/refaccion
+    @PostMapping
+    public ResponseEntity<Refaccion> add(@RequestBody Refaccion refaccion){
+        return ResponseEntity.ok(this.refaccionRepo.save(refaccion));
     }
 
-    @PostMapping("/agregar")
-    public ResponseEntity<?> agregarProducto(@RequestBody(required = true) Refaccion refa) {
-        return new ResponseEntity<>(tienda.agregar(refa), HttpStatus.CREATED);
+    //Elimina una refaccion por su ID
+    //Ej. http://localhost:8081/api/refaccion/6 pruebe en postman
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id){
+        if (this.refaccionRepo.existsById(id)) {
+            this.refaccionRepo.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+
+
     }
 
-    //Patch
-    //Editar un producto ya existente
-    @PatchMapping("/editar/producto")
-    public ResponseEntity<Refaccion> editarProducto(@RequestBody(required = true)Refaccion refaccion){
-        return new ResponseEntity<>(tienda.editar(refaccion.getId(), refaccion), HttpStatus.OK);
-    }
-
-//    @PatchMapping("/editar/carrito")
-//    public ResponseEntity<?> editarCarrito(@RequestBody(required = true) Clase que creara Jaz ) {
-//    }
-
-    //Delete
-    //Borrar un producto
-    @DeleteMapping("/borrar/producto/{id}")
-    public ResponseEntity<?> borrarAlgo(@PathVariable(required = true, name = "id") int id) {
-        return new ResponseEntity<>(tienda.eliminar(id), HttpStatus.OK);
-    }
 }
