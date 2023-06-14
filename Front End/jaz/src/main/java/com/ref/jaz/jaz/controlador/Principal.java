@@ -7,10 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,14 +28,8 @@ public class Principal {
     @GetMapping("/inicio")
     public String index(Model model) throws JsonProcessingException {
         String url = "http://127.0.0.1:8081/refaccion/api";
-        String url1 = "http://127.0.0.1:8081/refaccion/api/0";
+        String url1 = "http://127.0.0.1:8081/refaccion/api/1";
 
-        Flux<Refaccion> refaccionFlux = webClient.get()
-                .uri(url)
-                .retrieve()
-                .bodyToFlux(new ParameterizedTypeReference<Refaccion>() {
-                });
-        List<Refaccion> result = refaccionFlux.collectList().block();
 
         Mono<Refaccion> refaccionMono = webClient.get()
                 .uri(url1)
@@ -49,9 +40,42 @@ public class Principal {
         Refaccion result1 = refaccionMono.block();
 
 
-        model.addAttribute("refaccion", result);
+        Flux<Refaccion> refaccionFlux = webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToFlux(new ParameterizedTypeReference<Refaccion>() {
+                });
+        List<Refaccion> result = refaccionFlux.collectList().block();
+
+        /* Aquí se reduce la cantidad total de la lista result a solo 4 elementos */
+        if (result.size() > 4) {
+            result = result.subList(0, 4);
+        }
+
+
+
+
+
         model.addAttribute("refaccion1", result1);
+        model.addAttribute("refaccion", result);
+
         return "index";
+    }
+
+    @GetMapping("/catalogo")
+    public String catalogo(Model model) throws JsonProcessingException {
+        String url = "http://127.0.0.1:8081/refaccion/api";
+
+        Flux<Refaccion> refaccionFlux = webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToFlux(new ParameterizedTypeReference<Refaccion>() {
+                });
+        List<Refaccion> result = refaccionFlux.collectList().block();
+
+        model.addAttribute("refaccion", result);
+
+        return "catalogo";
     }
 
 
@@ -60,8 +84,28 @@ public class Principal {
         return "CUD";
     }
 
-    @GetMapping("/catalogo")
-    public String catalogo(Model model) throws JsonProcessingException {
+    @GetMapping("/contacto")
+    public String contacto(Model model) throws JsonProcessingException {
+        return "contact";
+    }
+
+
+    @PostMapping("/catalogos")
+    public String catalogos(@RequestParam(name = "number", required = false, defaultValue = "0") int number , Model model) {
+        String url = "http://127.0.0.1:8081/refaccion/api";
+
+        Flux<Refaccion> refaccionFlux = webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToFlux(new ParameterizedTypeReference<Refaccion>() {
+                });
+        List<Refaccion> result = refaccionFlux.collectList().block();
+        if (result.size() > number) {
+            result = result.subList(0, number);
+        }
+
+        model.addAttribute("refaccion", result);
+
         return "catalogo";
     }
 

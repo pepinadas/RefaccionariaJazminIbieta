@@ -56,10 +56,10 @@
                         <a class="nav-link" th:href="@{/catalogo}">Catalogo 2023</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#place-time">¿No encuentras lo que buscas?</a>
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#search" style="cursor: pointer;">¿No encuentras lo que buscas?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#conviertete-en-orador">Contactanos</a>
+                        <a class="nav-link" th:href="@{/contacto}">Contactanos</a>
                     </li>
                     <li class="nav-item ms-lg-3">
                         <button type="button" class="btn btn-refaccion" data-bs-toggle="modal" data-bs-target="#modalCompra">Iniciar Sesion</button>
@@ -134,7 +134,7 @@
                 <div th:each="refaccion : ${refaccion}" class="col-md-6 col-lg-4 col-xxl-3  mb-4 ">
                     <div class="card justify-content-center" style="height: 100%;">
                         <div class="row">
-                            <a href="#" class="text-center">
+                            <a data-bs-toggle="modal" data-bs-target="#Modalrefaccion" class="text-center" style="cursor: pointer;">
                                 <img th:src="${refaccion.imagen}" class="card-img-top" alt="Foto de refaccion" style="max-height: 414px !important; width: auto; max-width: 100%;">
                             </a>
                             <div class="card-body">
@@ -148,9 +148,6 @@
                         </div>
                     </div>
                 </div>
-
-                
-
             </div>
         </div>
     </section>
@@ -183,6 +180,43 @@
     </footer>
     <!-- /footer -->
 
+    <!-- Search -->
+    <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">¿No encuentras lo que buscas?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <div class="form-row">
+                  <div class="form-group col">
+                    <small>Nombre</small>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ej. Bateria" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <small>Marca</small>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ej. Toyota" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="alert alert-warning" role="alert">
+                Recibiras un correo cuando contemos con existencias
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-refaccion" data-bs-dismiss="modal">Enviar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- /Search -->
+
+
     <!-- Modal -->
     <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -198,13 +232,17 @@
                     <small>Usuario</small>
                     <div class="input-group mb-3">
                       <!--  <span class="input-group-text" id="basic-addon1">@</span> -->
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <small>Contraseña</small>
                     <div class="input-group mb-3">
                       <!--  <span class="input-group-text" id="basic-addon1">@</span> -->
-                      <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+                      </div>
                   </div>
                 </div>
               </form>
@@ -218,9 +256,34 @@
             </div>
           </div>
         </div>
-      </div>
-
+    </div>
     <!-- /Modal -->   
+
+    <!-- Refaccion -->
+    <div class="modal fade" id="Modalrefaccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div th:each="refaccion : ${refaccion1}" class="col-md-6 col-lg-4 col-xxl-3  mb-4 ">
+                <div class="card justify-content-center" style="height: 100%;">
+                    <div class="row">
+                        <a href="#" class="text-center">
+                            <img th:src="${refaccion.imagen}" class="card-img-top" alt="Foto de refaccion" style="max-height: 414px !important; width: auto; max-width: 100%;">
+                        </a>
+                        <div class="card-body">
+                            <div class="badges offset-8 offset-md-7 offset-lg-6 offset-xl-7 offset-xxl-7">
+                                <span th:text="${refaccion.marca}" class="badge text-bg-warning"></span>
+                                <span th:text="${refaccion.categoria}" class="badge text-bg-info"></span>
+                            </div>
+                            <h5 th:text="${refaccion.modelo}" class="card-title pt-3 ps-2"></h5>
+                            <p th:text="${refaccion.descripcion}" class="card-text pb-5 ps-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- /Refaccion -->    
 
 </body>
 </html>

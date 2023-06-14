@@ -31,7 +31,11 @@
     }
 
     #footer {
-    background: linear-gradient(90deg, #1c3643, #273b47 25%, #1e5472);
+        position:fixed;
+        left:0px;
+        bottom:0px;
+        width:100%;
+        background: linear-gradient(90deg, #1c3643, #273b47 25%, #1e5472);
     }
     #footer a {
         color: white;
@@ -56,10 +60,10 @@
                         <a class="nav-link" th:href="@{/catalogo}">Catalogo 2023</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#place-time">¿No encuentras lo que buscas?</a>
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#search" style="cursor: pointer;">¿No encuentras lo que buscas?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#conviertete-en-orador">Contactanos</a>
+                        <a class="nav-link" th:href="@{/contacto}">Contactanos</a>
                     </li>
                     <li class="nav-item ms-lg-3">
                         <button type="button" class="btn btn-refaccion" data-bs-toggle="modal" data-bs-target="#modalCompra">Iniciar Sesion</button>
@@ -86,9 +90,81 @@
     <!-- /Header -->
 
     <!-- Main -->
-    <main id="main" class="">
-        <section>
-            <form class="simplemente-editar" action="/edicion/" method="POST">
+    <main id="main" class="mt-5 pt-5 mt-lg-0">
+        <div class="container pt-5 mt-5">
+            <div class="row">
+                <div class="col text-uppercase text-center">
+                    <small>Editar</small>
+                    <h2>catalogo</h2>
+                </div>
+            </div>
+            <form class="form-row mt-5" th:action="@{/edicion/}" method="POST">
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="id">id</span>
+                      <input type="text" name="id" id="id" class="form-control" placeholder="123" aria-label="id" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="imagen">Link imagen</span>
+                      <input type="text" name="imagen" id="imagen" class="form-control" placeholder="https://ichef.bbci.co.uk/news/640/cpsprodpb/14EC6/production/_124820758_pug1.jpg" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="modelo">modelo</span>
+                      <input type="text" name="modelo" id="modelo" class="form-control"  placeholder="Llanta 195/55R16" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="descripcion">descripcion</span>
+                      <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Alto, color rojo, bonito" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="marca">marca</span>
+                      <input type="text" name="marca" id="marca" class="form-control" placeholder="Goodyear" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="costo">costo</span>
+                      <input type="text" name="costo" id="costo" class="form-control" placeholder="3200" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="categoria">categoria</span>
+                      <input type="text" name="categoria" id="categoria" class="form-control" placeholder="Llantas" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" for="cantidad">cantidad</span>
+                      <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="30" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3 mb-3 form-check">
+                        <input type="checkbox" name="metodo" value="agregar" class="form-check-input">
+                        <label class="form-check-label" for="exampleCheck1">Agregar</label>
+                    </div>
+                    <div class="col-3 mb-3 form-check">
+                        <input type="checkbox" name="metodo" value="editar" class="form-check-input">
+                        <label class="form-check-label" for="exampleCheck1">Editar</label>
+                    </div>
+                    <div class="col-3 mb-3 form-check">
+                        <input type="checkbox" name="metodo" value="borrar" class="form-check-input">
+                        <label class="form-check-label" for="exampleCheck1">Borrar</label>
+                    </div>
+                </div>
+                
+                <input type="submit" value="confirmar" id="agregar" class="btn btn-refaccion w-100">
+            </form>
+<!--             <form class="simplemente-editar" action="/edicion/" method="POST">
                 <label for="id">id</label>
                 <input type="text" name="id" id="id" class="normal">
                 <label for="imagen">imagen</label>
@@ -108,8 +184,8 @@
                 <label for="metodo">Coloca agregar, editar o borrar dependiendo que quieras (por defecto agregar)</label>
                 <input type="text" name="metodo" id="metodo" class="normal">
                 <input type="submit" value="confirmar" id="agregar">
-            </form>
-        </section>
+            </form>-->
+        </div>
     </main>
     <!-- /Main -->
 
@@ -141,40 +217,83 @@
     </footer>
     <!-- /footer -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Search -->
+    <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+              <h5 class="modal-title" id="exampleModalLabel">¿No encuentras lo que buscas?</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form action="">
                 <div class="form-row">
                   <div class="form-group col">
+                    <small>Nombre</small>
                     <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">@</span>
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Ej. Bateria" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <small>Marca</small>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ej. Toyota" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                   </div>
                 </div>
               </form>
               <div class="alert alert-warning" role="alert">
-                Recibiras un correo de confirmación si sales sorteado
+                Recibiras un correo cuando contemos con existencias
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <a th:href="@{/editar}" type="button" class="btn btn-refaccion">Comprar</a>
+              <button type="button" class="btn btn-refaccion" data-bs-dismiss="modal">Enviar</button>
             </div>
           </div>
         </div>
-      </div>
+    </div>
+    <!-- /Search -->   
 
-    <!-- /Modal -->
-
-
+    <!-- Modal -->
+    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleLabel">Iniciar Sesion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                <div class="form-row">
+                  <div class="form-group col">
+                    <small>Usuario</small>
+                    <div class="input-group mb-3">
+                      <!--  <span class="input-group-text" id="basic-addon1">@</span> -->
+                      <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <small>Contraseña</small>
+                    <div class="input-group mb-3">
+                      <!--  <span class="input-group-text" id="basic-addon1">@</span> -->
+                      <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="alert alert-warning" role="alert">
+                No hay distinción de mayusculas o minusculas
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <a th:href="@{/editar}" type="button" class="btn btn-refaccion">Confirmar</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- /Modal -->    
 
 </body>
 </html>

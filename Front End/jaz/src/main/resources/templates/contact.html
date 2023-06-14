@@ -26,12 +26,12 @@
         width: 80px;
     }
 
-    #about-us {
-        color: white;
-    }
-
     #footer {
-    background: linear-gradient(90deg, #1c3643, #273b47 25%, #1e5472);
+        position:fixed;
+        left:0px;
+        bottom:0px;
+        width:100%;
+        background: linear-gradient(90deg, #1c3643, #273b47 25%, #1e5472);
     }
     #footer a {
         color: white;
@@ -85,64 +85,56 @@
     </nav>
     <!-- /Header -->
 
-    <!-- Sidebar -->    
-    <section id="sidebar" class="" style="margin-top: 5rem;">
-        <div class="container-fluid">
+    <!-- Main -->
+    <main id="main" class="pb-4 pt-5 mt-5 bt-5 ">
+        <div class="container mt-3">
             <div class="row">
-                <div class="col-2 d-none d-md-block text-center"  style="background-color: white;">
-                    <div class="row mt-5 text-center">
+                <div class="col text-uppercase text-center">
+                    <small>¿Quieres solicitar una cantidad mayor?</small>
+                    <h2>Contactanos</h2>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col text-center">
+                        Ingresa tus datos para que nos podamos <abbr title="tiempo maximo de 2 días" data-bs-toggle="tooltip">comunicar</abbr>
+                        lo mas pronto posible
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2 mt-2">
+                        <div class="row">
+                            <div class="form-label col-12 col-md-6">
+                                <input type="text" class="form-control" placeholder="Nombre" aria-label="First name">
+                            </div>
+                            <div class="form-label col-12 col-md-6">
+                                <input type="text" class="form-control" placeholder="Apellido" aria-label="Last name">
+                            </div>
+                            <div class="form-label col-12 col-md-6">
+                                <input type="text" class="form-control" placeholder="Telefono" aria-label="Phone Number">
+                            </div>
+                            <div class="form-label col-12 col-md-6">
+                                <input type="text" class="form-control" placeholder="Email" aria-label="Email">
+                            </div>
+                        </div>
+                    <div class="form-row">
+                        <div class="form-label col">
+                            <textarea name="text" class="form-control form-control-lg" placeholder="¿Que articulos quieres comprar?"></textarea>
+                            <small class="form-text text-muted">
+                            *Recuerda incluir los numeros de identificación y una cantidad aproximada
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="col">
-                            <p><b>Lo más nuevo</b></p>
-                            <form th:action="@{/catalogos}" method="post">
-                                <button type="submit" name="number" value="5" class="btn mb-2  col-12">Ultimos 5 productos</button>
-                                <button type="submit" name="number" value="10" class="btn mb-2 col-12">Ultimos 10 productos</button>
-                                <button type="submit" name="number" value="15" class="btn mb-2 col-12">Ultimos 15 productos</button>
-                            </form>
+                            <button type="button" class="btn btn-refaccion w-100">Enviar</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                        <!-- Hot sale -->
-                        <section id="hot-sale" class="pt-5" style="background-color: #E5E5E5;">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col text-uppercase text-center">
-                                        <small>Conoce nuestros</small>
-                                        <h2>productos</h2>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div th:each="refaccion : ${refaccion}" class="col-md-6 col-lg-4 col-xxl-3  mb-4 ">
-                                        <div class="card justify-content-center" style="height: 100%;">
-                                            <div class="row">
-                                                <a href="#" class="text-center">
-                                                    <img th:src="${refaccion.imagen}" class="card-img-top" alt="Foto de refaccion" style="max-height: 414px !important; width: auto; max-width: 100%;">
-                                                </a>
-                                                <div class="card-body">
-                                                    <div class="badges offset-8 offset-md-7 offset-lg-6 offset-xl-7 offset-xxl-7">
-                                                        <span th:text="${refaccion.marca}" class="badge text-bg-warning"></span>
-                                                        <span th:text="${refaccion.categoria}" class="badge text-bg-info"></span>
-                                                    </div>
-                                                    <h5 th:text="${refaccion.modelo}" class="card-title pt-3 ps-2"></h5>
-                                                    <p th:text="${refaccion.descripcion}" class="card-text pb-5 ps-2"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    
-
-                                </div>
-                            </div>
-                        </section>
-                        <!-- /Hot sale -->                    
-                </div>
             </div>
         </div>
-        
-    </section>
-    <!-- /Sidebar -->  
-    
+    </main>
+    <!-- /Main -->
+
 
     <!-- footer -->
     <footer id="footer" class="pb-4 pt-4">
@@ -176,7 +168,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">¿No encuentras lo que buscas?</h5>
+              <h5 class="modal-title" id="searchModalLabel">¿No encuentras lo que buscas?</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -205,7 +197,7 @@
           </div>
         </div>
     </div>
-    <!-- /Search -->    
+    <!-- /Search -->  
 
     <!-- Modal -->
     <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -248,6 +240,13 @@
         </div>
     </div>
     <!-- /Modal -->  
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 
 </body>
 </html>
