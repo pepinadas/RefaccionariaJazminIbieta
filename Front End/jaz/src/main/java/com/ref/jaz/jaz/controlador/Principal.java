@@ -27,8 +27,8 @@ public class Principal {
 
     @GetMapping("/inicio")
     public String index(Model model) throws JsonProcessingException {
-        String url = "http://127.0.0.1:8081/refaccion/api";
-        String url1 = "http://127.0.0.1:8081/refaccion/api/1";
+        String url = "http://127.0.0.1:8081/api/refaccion";
+        String url1 = "http://127.0.0.1:8081/api/refaccion/1";
 
 
         Mono<Refaccion> refaccionMono = webClient.get()
@@ -64,7 +64,7 @@ public class Principal {
 
     @GetMapping("/catalogo")
     public String catalogo(Model model) throws JsonProcessingException {
-        String url = "http://127.0.0.1:8081/refaccion/api";
+        String url = "http://127.0.0.1:8081/api/refaccion";
 
         Flux<Refaccion> refaccionFlux = webClient.get()
                 .uri(url)
@@ -92,7 +92,7 @@ public class Principal {
 
     @PostMapping("/catalogos")
     public String catalogos(@RequestParam(name = "number", required = false, defaultValue = "0") int number , Model model) {
-        String url = "http://127.0.0.1:8081/refaccion/api";
+        String url = "http://127.0.0.1:8081/api/refaccion";
 
         Flux<Refaccion> refaccionFlux = webClient.get()
                 .uri(url)
@@ -126,9 +126,8 @@ public class Principal {
 
         Refaccion refaccion = new Refaccion(id, imagen,modelo,descripcion,marca,costo,categoria,cantidad);
         System.out.println("cambiar " + refaccion);
-        String url = "http://127.0.0.1:8081/agregar";
-        String url1 = "http://127.0.0.1:8081/editar/producto";
-        String url2 = "http://127.0.0.1:8081/borrar/producto/" + id;
+        String url = "http://127.0.0.1:8081/api/refaccion";
+        String url2 = "http://127.0.0.1:8081/api/refaccion" + id;
 
         String result = "";
 
@@ -142,7 +141,7 @@ public class Principal {
             result = resultMono.block();
         } else if (metodo.equals("editar")) {
             Mono<String> resultMono = webClient.patch()
-                    .uri(url1)
+                    .uri(url)
                     .contentType(MediaType.APPLICATION_JSON)
                     .bodyValue(refaccion)
                     .retrieve()
