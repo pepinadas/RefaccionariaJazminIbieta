@@ -13,9 +13,11 @@ public class Refaccion {
     private String modelo;
     private String descripcion;
     private String marca; //Tal vez deberiamos pensar en declarar esto como un List<String> marca, para que sean valores establecidos y super a menos de que la marca fuera previamente creada, no sea valida, para evitar faltas de ortografia
-    private double costo;
+    private int costo;
     private String categoria; //Lo mismo con esto
     private int cantidad;
+
+
     //post vender
     public boolean vender(){
         boolean resultado = false;

@@ -117,7 +117,7 @@ public class Principal {
             @ModelAttribute("modelo") String modelo,
             @ModelAttribute("descripcion") String descripcion,
             @ModelAttribute("marca") String marca,
-            @ModelAttribute("costo") double costo,
+            @ModelAttribute("costo") int costo,
             @ModelAttribute("categoria") String categoria,
             @ModelAttribute("cantidad") int cantidad,
             @ModelAttribute("metodo") String metodo,
@@ -127,7 +127,7 @@ public class Principal {
         Refaccion refaccion = new Refaccion(id, imagen,modelo,descripcion,marca,costo,categoria,cantidad);
         System.out.println("cambiar " + refaccion);
         String url = "http://127.0.0.1:8081/api/refaccion";
-        String url2 = "http://127.0.0.1:8081/api/refaccion" + id;
+        String url2 = "http://127.0.0.1:8081/api/refaccion/" + id;
 
         String result = "";
 
@@ -148,7 +148,8 @@ public class Principal {
                     .bodyToMono(String.class);
             result = resultMono.block();
         } else if (metodo.equals("borrar")) {
-            webClient
+
+            Void resultMono = webClient
                     .delete()
                     .uri(url2)
                     .retrieve()
